@@ -5,20 +5,16 @@ int[] Part1(int[] args)
     for(int i = 0; i < args.Length; i += 4)
     {
         int op = args[i];
-        
-        int result = op switch
-        {
-            1   => args[args[i + 1]] + args[args[i + 2]],
-            2   => args[args[i + 1]] * args[args[i + 2]],
-            99  => -123,
-            _   => throw new ArgumentException($"{op} is an invalid op code")      
-        };
 
-        if (result != -123)
+        if (op == 1)
         {
-            args[args[i + 3]] = result;
+            args[args[i + 3]] = args[args[i + 1]] + args[args[i + 2]];
         }
-        else
+        else if (op == 2)
+        {
+            args[args[i + 3]] = args[args[i + 1]] * args[args[i + 2]];
+        }
+        else if (op == 99)
         {
             break;
         }
